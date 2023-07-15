@@ -7,18 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace  NadinTask.Domain.DTOs.Security
+namespace NadinTask.Domain.DTOs.Security
 {
-    public class UserRegisterDto
+    public class AccountEditDto
     {
-        public string? Role_User { get; set; }
-
-         [DataType(DataType.Password)]
-        public string? Password { get; set; }
-
-         [Compare("Password", ErrorMessageResourceName = nameof(NadinTask.Domain.Resources.Shared.ComparePasswordError), ErrorMessageResourceType = typeof(Resources.Shared))]
-        [DataType(DataType.Password)]
-        public string? ConfirmPassword { get; set; }
+        public int id { get; set; }
 
         [MaxLength(length: 150, ErrorMessageResourceName = nameof(Resources.Shared.MaxLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]
         public string? Name_User { get; set; }
@@ -26,11 +19,11 @@ namespace  NadinTask.Domain.DTOs.Security
         [MaxLength(length: 150, ErrorMessageResourceName = nameof(Resources.Shared.MaxLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]
         [Required(ErrorMessage = nameof(Resources.Shared.RequiredError), ErrorMessageResourceType = typeof(Resources.Shared))]
         public string UserName { get; set; }
-
-         [MaxLength(length: 150, ErrorMessageResourceName = nameof(Resources.Shared.MaxLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]
-        [EmailAddress(ErrorMessage = nameof(Resources.Shared.FormatError), ErrorMessageResourceType = typeof(Resources.Shared))]
+      
+        [MaxLength(length: 150, ErrorMessageResourceName = nameof(Resources.Shared.MaxLengthError), ErrorMessageResourceType = typeof(Resources.Shared))]
+        [EmailAddress(ErrorMessage =nameof(Resources.Shared.FormatError), ErrorMessageResourceType =typeof(Resources.Shared))]
         public string? Email { get; set; }
 
+
     }
-        
 }

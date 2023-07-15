@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Net.NetworkInformation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
-//using NadinTask.API.Attributes;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.AspNetCore.Identity;
 using System.Reflection.Metadata.Ecma335;
@@ -15,6 +14,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel;
 using NadinTask.Domain.Models.Products;
 using Microsoft.AspNetCore.Mvc.Filters;
+using System.Linq.Expressions;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +35,6 @@ namespace NadinTask.API.Controllers.Base
         {
             _baseService = baseService;
         }
-
 
 
         [HttpPost("Create")]
@@ -60,6 +59,7 @@ namespace NadinTask.API.Controllers.Base
             return await _baseService.GetAsync(id);
         }
 
+
         [HttpPost("Edit")]
         public virtual async Task<ActionResult> Edit(TDtoEntity instance)
         {
@@ -75,7 +75,6 @@ namespace NadinTask.API.Controllers.Base
 
 
         [HttpDelete("{id}")]
-      
         public virtual async Task<ActionResult> Delete(TKey id)
         {
             var result = await _baseService.DeleteAsync(id);
@@ -90,6 +89,6 @@ namespace NadinTask.API.Controllers.Base
             return result >= 0 ? Ok() : BadRequest();
         }
 
-
+     
     }
 }

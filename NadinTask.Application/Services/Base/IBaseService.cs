@@ -26,7 +26,6 @@ namespace NadinTask.Application.Services.Base
         Task<TViewEntity> GetAsync(TKey key);
         Task<IQueryable<TViewEntity>> GetListAsync();
         Task<IEnumerable<TViewEntity>> GetListAsync(Expression<Func<TEntity, bool>> expression);
-       // Task<long> GetRecordCount(IQueryable<TViewEntity> list);
         Task<long> GetRecordCount();
     }
 }

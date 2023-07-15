@@ -26,6 +26,7 @@ namespace NadinTask.Domain.Models.Security
         public string? Last1_Pass { get; set; }
        
         public bool IsActive_ { get; set; } = true;
+        public bool IsDeleted_ { get; set; }
         public virtual ICollection<UserRole> User_Role_List { get; set; }
 
 

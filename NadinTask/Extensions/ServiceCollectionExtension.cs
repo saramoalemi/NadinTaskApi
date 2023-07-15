@@ -1,5 +1,5 @@
 ﻿
-//using NadinTask.API.Services;
+using NadinTask.API.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -47,8 +47,6 @@ public static class ServiceExtension
     }
     public static void ConfigureResponseCaching(this IServiceCollection services) => services.AddResponseCaching();
 
-
-
     public static void ConfigureJWT(this IServiceCollection services, IConfiguration configuration)
     {
         var jwtConfig = configuration.GetSection("JwtConfig");
@@ -73,26 +71,8 @@ public static class ServiceExtension
         };
 
 
-        /////////////////////////////////////////////
     });
-        //services.AddAuthentication(options => {
-        //    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-        //    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-        //    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
-        //})
-        //  .AddJwtBearer(options =>
-        //{
-        //    options.TokenValidationParameters = new TokenValidationParameters
-        //    {
-        //        ValidateIssuer = true,
-        //        ValidateAudience = true,
-        //        ValidateLifetime = true,
-        //        ValidateIssuerSigningKey = true,
-        //        ValidIssuer = jwtConfig["validIssuer"],
-        //        ValidAudience = jwtConfig["validAudience"],
-        //        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(secretKey))
-        //    };
-        //});
+      
     }
    
     public static void ConfigureSwagger(this IServiceCollection services)
@@ -139,7 +119,6 @@ public static class ServiceExtension
         });
     }
 
-    //برای اکستند کردن پسورد
     public static void ConfigureIdentity(this IServiceCollection services)
     {
         services.AddIdentity<User, Role>(o =>

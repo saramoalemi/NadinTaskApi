@@ -4,7 +4,6 @@ using NadinTask.Domain.Models.Products;
 using NadinTask.Infrastructure.Repositories.Base;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-
 using Microsoft.AspNetCore.Http;
 //using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.EntityFrameworkCore;
@@ -79,7 +78,6 @@ namespace NadinTask.Application.Services.Base
         }
 
 
-
         public async Task<int> DeleteAsync(TKey key)
         {
             await BeforeDelete(key);
@@ -108,13 +106,7 @@ namespace NadinTask.Application.Services.Base
             var result = await _repository.GetAllAsync(false);
             return _mapper.ProjectTo<TViewEntity>(result);
         }
-        public async Task<IQueryable<TViewEntity>> GetListAsync(int year)
-        {
-            var result = await _repository.GetAllAsync(false, year);
-            return _mapper.ProjectTo<TViewEntity>(result);
-        }
-
-
+     
         public async Task<IQueryable<TViewEntity>> CreateListAsync(List<TDtoEntity> list)
         {
             var realList = _mapper.ProjectTo<TEntity>(list.AsQueryable());

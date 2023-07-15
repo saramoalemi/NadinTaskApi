@@ -236,10 +236,7 @@ namespace NadinTask.Infrastructure.Repositories.Base
             return await EntityCollection.LongCountAsync(x => !x.IsDeleted_);
         }
 
-        public Task<IQueryable<TEntity>> GetAllAsync(bool trackChanges, int? year)
-        {
-            throw new NotImplementedException();
-        }
+       
         public virtual IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> func)
         {
 

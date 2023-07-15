@@ -167,14 +167,5 @@ namespace NadinTask.Domain.Resources {
                 return ResourceManager.GetString("UniqueError", resourceCulture);
             }
         }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to دوره مالی.
-        /// </summary>
-        public static string Year {
-            get {
-                return ResourceManager.GetString("Year", resourceCulture);
-            }
-        }
     }
 }

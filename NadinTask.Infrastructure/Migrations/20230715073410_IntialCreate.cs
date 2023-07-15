@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace NadinTask.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class IntialCreate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -70,6 +70,7 @@ namespace NadinTask.Infrastructure.Migrations
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Last1_Pass = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IsActive_ = table.Column<bool>(type: "bit", nullable: false),
+                    IsDeleted_ = table.Column<bool>(type: "bit", nullable: false),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedEmail = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     EmailConfirmed = table.Column<bool>(type: "bit", nullable: false),
@@ -234,8 +235,8 @@ namespace NadinTask.Infrastructure.Migrations
             migrationBuilder.InsertData(
                 schema: "Security",
                 table: "Users",
-                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreationDate", "Email", "EmailConfirmed", "IsActive_", "Last1_Pass", "LockoutEnabled", "LockoutEnd", "Name_User", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
-                values: new object[] { 1, 0, "659dde82-6598-4c4d-a3f8-6a8784be078e", new DateTime(2023, 7, 12, 12, 39, 28, 193, DateTimeKind.Unspecified).AddTicks(4914), null, false, true, null, false, null, null, null, null, "AQAAAAIAAYagAAAAEKzoY5dZ2/K4di52Ji29gSdsEFPfqaFngRFF+FEH3JZGKaR6FXxcEuOkPaV2bWZO2Q==", null, false, "6JFSAMEXX5AUGHKIFVOR2MFD532PNEB7", false, "user1" });
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreationDate", "Email", "EmailConfirmed", "IsActive_", "IsDeleted_", "Last1_Pass", "LockoutEnabled", "LockoutEnd", "Name_User", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[] { 1, 0, "659dde82-6598-4c4d-a3f8-6a8784be078e", new DateTime(2023, 7, 12, 12, 39, 28, 193, DateTimeKind.Unspecified).AddTicks(4914), null, false, true, false, null, false, null, null, null, null, "AQAAAAIAAYagAAAAEKzoY5dZ2/K4di52Ji29gSdsEFPfqaFngRFF+FEH3JZGKaR6FXxcEuOkPaV2bWZO2Q==", null, false, "6JFSAMEXX5AUGHKIFVOR2MFD532PNEB7", false, "user1" });
 
             migrationBuilder.CreateIndex(
                 name: "UK_Product_ManufactureEmail_ProductDate",

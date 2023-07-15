@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NadinTask.API.Extensions;
 using NadinTask.API.Services;
+using NadinTask.Domain.Models.Security;
 using NadinTask.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ builder.Services.AddControllers();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-builder.Services.AddCors(options => //تست بعدا عوض کن //app.UseCors("CorsPolicy"); پایین تر
+builder.Services.AddCors(options => 
 {
     options.AddPolicy("CorsPolicy", builder => builder.WithOrigins("https://localhost:3000/")
         .AllowAnyHeader()
@@ -20,10 +21,11 @@ builder.Services.AddCors(options => //تست بعدا عوض کن //app.UseCors(
         .AllowCredentials()
         .SetIsOriginAllowed((host) => true));
 });
-
+//extensionFolderServices
+builder.Services.ConfigureIdentity();
 builder.Services.RegisterRepositoryDependencies(); 
 builder.Services.RegisterServicesDependencies(); 
-builder.Services.ConfigureMappingProfiles();// Extension پوشه
+builder.Services.ConfigureMappingProfiles();
 
 builder.Services.ConfigureSqlContext(builder.Configuration);
 var app = builder.Build();

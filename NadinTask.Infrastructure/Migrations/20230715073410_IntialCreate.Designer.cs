@@ -12,8 +12,8 @@ using NadinTask.Infrastructure;
 namespace NadinTask.Infrastructure.Migrations
 {
     [DbContext(typeof(NadinContext))]
-    [Migration("20230712183212_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20230715073410_IntialCreate")]
+    partial class IntialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,175 +27,6 @@ namespace NadinTask.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
-
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.Role", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Description")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("IsDeleted_")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedName")
-                        .IsUnique()
-                        .HasDatabaseName("RoleNameIndex")
-                        .HasFilter("[NormalizedName] IS NOT NULL");
-
-                    b.ToTable("Roles", "Security");
-                });
-
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.RolePermission", b =>
-                {
-                    b.Property<long>("ID")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<bool>("IsActive_")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsDeleted_")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("PermissionName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("RoleID")
-                        .HasColumnType("int");
-
-                    b.HasKey("ID");
-
-                    b.HasIndex("RoleID");
-
-                    b.ToTable("RolePermissions", "Security");
-                });
-
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("IsActive_")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Last1_Pass")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name_User")
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .IsRequired()
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("Users", "Security");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "659dde82-6598-4c4d-a3f8-6a8784be078e",
-                            CreationDate = new DateTime(2023, 7, 12, 12, 39, 28, 193, DateTimeKind.Unspecified).AddTicks(4914),
-                            EmailConfirmed = false,
-                            IsActive_ = true,
-                            LockoutEnabled = false,
-                            PasswordHash = "AQAAAAIAAYagAAAAEKzoY5dZ2/K4di52Ji29gSdsEFPfqaFngRFF+FEH3JZGKaR6FXxcEuOkPaV2bWZO2Q==",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "6JFSAMEXX5AUGHKIFVOR2MFD532PNEB7",
-                            TwoFactorEnabled = false,
-                            UserName = "user1"
-                        });
-                });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
@@ -353,7 +184,180 @@ namespace NadinTask.Infrastructure.Migrations
                     b.ToTable("Product", "Products");
                 });
 
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.UserRole", b =>
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.Role", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted_")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("Roles", "Security");
+                });
+
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.RolePermission", b =>
+                {
+                    b.Property<long>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("ID"));
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsActive_")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted_")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("PermissionName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("RoleID")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("RoleID");
+
+                    b.ToTable("RolePermissions", "Security");
+                });
+
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsActive_")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("IsDeleted_")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Last1_Pass")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name_User")
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("Users", "Security");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "659dde82-6598-4c4d-a3f8-6a8784be078e",
+                            CreationDate = new DateTime(2023, 7, 12, 12, 39, 28, 193, DateTimeKind.Unspecified).AddTicks(4914),
+                            EmailConfirmed = false,
+                            IsActive_ = true,
+                            IsDeleted_ = false,
+                            LockoutEnabled = false,
+                            PasswordHash = "AQAAAAIAAYagAAAAEKzoY5dZ2/K4di52Ji29gSdsEFPfqaFngRFF+FEH3JZGKaR6FXxcEuOkPaV2bWZO2Q==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "6JFSAMEXX5AUGHKIFVOR2MFD532PNEB7",
+                            TwoFactorEnabled = false,
+                            UserName = "user1"
+                        });
+                });
+
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.UserRole", b =>
                 {
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUserRole<int>");
 
@@ -362,20 +366,9 @@ namespace NadinTask.Infrastructure.Migrations
                     b.HasDiscriminator().HasValue("UserRole");
                 });
 
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.RolePermission", b =>
-                {
-                    b.HasOne("ArvinERP.Domain.Models.Security.Role", "Permission_Role")
-                        .WithMany("Role_Permission_List")
-                        .HasForeignKey("RoleID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Permission_Role");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
                 {
-                    b.HasOne("ArvinERP.Domain.Models.Security.Role", null)
+                    b.HasOne("NadinTask.Domain.Models.Security.Role", null)
                         .WithMany()
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -384,7 +377,7 @@ namespace NadinTask.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("ArvinERP.Domain.Models.Security.User", null)
+                    b.HasOne("NadinTask.Domain.Models.Security.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -393,7 +386,7 @@ namespace NadinTask.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("ArvinERP.Domain.Models.Security.User", null)
+                    b.HasOne("NadinTask.Domain.Models.Security.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -402,22 +395,33 @@ namespace NadinTask.Infrastructure.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("ArvinERP.Domain.Models.Security.User", null)
+                    b.HasOne("NadinTask.Domain.Models.Security.User", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.UserRole", b =>
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.RolePermission", b =>
                 {
-                    b.HasOne("ArvinERP.Domain.Models.Security.Role", "Role")
+                    b.HasOne("NadinTask.Domain.Models.Security.Role", "Permission_Role")
+                        .WithMany("Role_Permission_List")
+                        .HasForeignKey("RoleID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Permission_Role");
+                });
+
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.UserRole", b =>
+                {
+                    b.HasOne("NadinTask.Domain.Models.Security.Role", "Role")
                         .WithMany("Role_User_List")
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ArvinERP.Domain.Models.Security.User", "User")
+                    b.HasOne("NadinTask.Domain.Models.Security.User", "User")
                         .WithMany("User_Role_List")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -428,14 +432,14 @@ namespace NadinTask.Infrastructure.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.Role", b =>
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.Role", b =>
                 {
                     b.Navigation("Role_Permission_List");
 
                     b.Navigation("Role_User_List");
                 });
 
-            modelBuilder.Entity("ArvinERP.Domain.Models.Security.User", b =>
+            modelBuilder.Entity("NadinTask.Domain.Models.Security.User", b =>
                 {
                     b.Navigation("User_Role_List");
                 });

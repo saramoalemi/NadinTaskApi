@@ -17,11 +17,8 @@ namespace NadinTask.Infrastructure.Repositories.Base
     {
         Task<TEntity> GetAsync(TKey key);
         Task<IQueryable<TEntity>> GetAllAsync(bool trackChanges);
-        Task<IQueryable<TEntity>> GetAllAsync(bool trackChanges, int? year);
-    
-        Task<IQueryable<TEntity>> GetListAsync(List<TKey> keys);
-        // Task<IQueryable<TEntity>> GetByConditionAsync(Expression<Func<TEntity, bool>> expression, bool trackChanges=false);
-      
+         Task<IQueryable<TEntity>> GetListAsync(List<TKey> keys);
+        
         Task<long> GetCount();
         IQueryable<TEntity> GetQueryable(Expression<Func<TEntity, bool>> func);
         Task<int> CreateAsync(TEntity entity);
