@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "NadinTask.Application": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:4185;http://localhost:4188"
+    }
+  }
+}
